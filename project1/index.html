@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Skill demo for Airbnb</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="cards.css">
+        <link rel="stylesheet" href="main.css" />
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     
+    </head>
+    <body>
+        <header id="header">
+            <div class="content">
+                <h1>Hello, Airbnb hiring officer!</h1>
+                <p>This is  a simple project I put together to demonstrate a few of my skills</br>as part of my apprenticeship application
+                </br> </br> Thank you for taking the time to check it out!
+                </p>
+                <ul class="actions">
+                    <li>
+                    <button type="submit" class="btn" onclick="openPopup()">Click me</button>
+                    </li>
+                   
+                </ul>
+            </div>
+            <div class="image phone"><div class="inner"><img src="img/LinkedIn_ProfilePic.jpg" alt="" /></div></div>
+        </header>
+
+        <div class="container">
+                <div class="popup" id="popup">
+                    <img src="img/tick.png">
+                    <h3>How many travel destinations do you want to see?</h3>
+                    <p>(just so I can demo my for loop)</p>
+                    <div>
+                        <input type="range" min="1" max="4" value="2" class="slider" id="myRange" onchange="show_value()">
+                        <p>We are getting <span id="num"></span> card(s)</p>
+                      </div>
+                    <button type="buton" onclick="closePopup()">Show me</button>        
+                </div>
+        </div>
+
+        <div class="cardpart">
+            <ul class="cards">
+            
+               
+                </ul>
+              </div>
+        <script>
+    var sl = $("#myRange");   
+    var n = $("#num");
+    
+    n[0].innerHTML = sl[0].defaultValue;
+    function show_value()
+{
+    
+    n[0].innerHTML = sl[0].value;
+}
+           var p = $("#popup"); 
+           var c = $('.cards');
+           var u = $('ul');
+    
+         function openPopup(){
+        
+        p.addClass('open-popup')
+        }
+        var requestedCards = document.querySelector(".cards");
+        let newCard = "";
+        const desc = "This destination will make you want to settle down here!"
+        function closePopup()
+    {
+        p.removeClass('open-popup')
+        c.addClass('opencards')
+        u.addClass('ulshow')
+        requestedCards.innerHTML = '';
+var cnt = n[0].innerHTML;
+        for (i = 1; i<=cnt; i++)
+{
+    if ((cnt == null) || (cnt >8))
+    {
+        return 1;
+    }
+    
+    var curl = "img/img-" + i + ".jpg";
+    var dsc = "Awesome Destination " + i;
+    newCard=` <li>
+                    <a href="" class="card">
+                      <img src="${curl}" class="card__image" alt="" />
+                      <div class="card__overlay">
+                        <div class="card__header">
+                          <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>                 
+                         <div class="card__header-text">
+                            <h3 class="card__title">${dsc}</h3>
+                        
+                          </div>          
+                        </div>
+                        <p class="card__description">${desc}</p>
+                      </div>
+                    </a>
+                  </li>   `;
+            
+          
+
+            requestedCards.innerHTML += newCard;
+          
+}
+requestedCards.scrollIntoView();
+
+    }  
+    
+
+   
+        </script>
+    </body>
+</html>
